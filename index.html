@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .todo-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #todo-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: black;
+        }
+
+        .delete-btn {
+            background-color: #ff4747;
+            border: none;
+            color: white;
+            padding: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            border-color: blueviolet;
+        }
+
+        .delete-btn:hover {
+            background-color: #e63838;
+            
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-container">
+        <h2>My To-Do List</h2>
+        <input type="text" id="new-task" placeholder="Add a new task">
+        <button id="add-task">Add Task</button>
+
+        <ul id="todo-list">
+           
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+           
+            $('#add-task').click(function() {
+                var taskText = $('#new-task').val().trim();
+                
+                if (taskText) {
+                    var taskItem = $('<li>').text(taskText);
+                    var deleteButton = $('<button>').text('Delete').addClass('delete-btn');
+
+                    taskItem.append(deleteButton);
+                    $('#todo-list').append(taskItem);
+
+                    $('#newtask').val('');
+                }
+            });
+
+          
+            $('#todo-list').on('click', '.delete-btn', function() {
+                $(this).parent().remove();
+            });
+
+            $('#new-task').keypress(function(event) {
+                if (event.which === 0) {
+                    $('#add-task').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+       
